@@ -53,20 +53,38 @@ namespace GroupProject.Areas.Identity.Pages.Account
             
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Email")]
+            [Display(Name = "Last Name")]
             public string LastName { get; set; }
+
+            [Required]
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
             public string Address { get; set; }
 
-
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "City")]
+            public string City { get; set; }
 
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "State")]
+            public string State { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Zip")]
+            public string Zip { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -92,7 +110,8 @@ namespace GroupProject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppliocationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Address = Input.Address };
+                var user = new AppliocationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, PhoneNumber = Input.PhoneNumber,
+                    Address = Input.Address, City = Input.City, State = Input.State, Zip = Input.Zip};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

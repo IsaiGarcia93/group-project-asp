@@ -13,14 +13,29 @@ namespace GroupProject.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "int")]
         public int CustID { get; set; }
+        
         [PersonalData]
         [Column(TypeName = "nvarchar(50)")]
         public string FirstName { get; set; }
+        
         [PersonalData]
         [Column(TypeName = "nvarchar(50)")]
         public string LastName { get; set; }
+        
         [PersonalData]
         [Column(TypeName = "nvarchar(50)")]
         public string Address { get; set; }
+        
+        [PersonalData]
+        [Column(TypeName = "nvarchar(50)")]
+        public string City { get; set; }
+            
+        [PersonalData]
+        [Column(TypeName = "nvarchar(2)")]
+        public string State { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(6)")]
+        public string Zip { get; set; }
     }
 }

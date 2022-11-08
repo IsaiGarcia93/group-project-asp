@@ -9,11 +9,7 @@ namespace GroupProject.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the AppliocationUser class
     public class AppliocationUser : IdentityUser
-    {
-        [PersonalData]
-        [Column(TypeName = "int")]
-        public int CustID { get; set; }
-        
+    {               
         [PersonalData]
         [Column(TypeName = "nvarchar(50)")]
         public string FirstName { get; set; }

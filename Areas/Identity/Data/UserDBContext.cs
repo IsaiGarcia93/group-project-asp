@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Areas.Identity.Data;
+using GroupProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,8 @@ namespace GroupProject.Data
             : base(options)
         {
         }
+
+        public DbSet<ItemsModel> ItemsModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

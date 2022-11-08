@@ -9,42 +9,35 @@ namespace GroupProject.Models
 {
     public class ItemsModel
     {
+        [Key]
         [Display(Name = "Item Number")]
-        public int ItemId { get; set; }
+        public int ItemID { get; set; }
 
+        [Required(ErrorMessage = "Please add a Title.")]
+        [StringLength(100)]
+        public string ItemName { get; set; }
 
-        // [Required]
-        // [StringLength(100)]
-        public string Title { get; set; }
-
-
-        // [Required]
-        // [StringLength(100)]
+        [Required(ErrorMessage = "Please add a description.")]
+        [StringLength(100)]
         [Display(Name = "Description")]
         public string ItemDescription { get; set; }
 
-
-        // [Required]
-        // [Range(0, 9999.99]
+        [Required(ErrorMessage = "Please add a price.")]
+        [Range(0, 999999.99)]
         [Display(Name = "Price")]
         public decimal ItemPrice { get; set; }
 
-
+        [Required(ErrorMessage = "Please add the date.")]
         [Display(Name = "Date")]
         public DateTime? DateCreated { get; set; }
 
-
-
-        [Required(ErrorMessage = "Please Upload a Valid Image File. Only jpg format allowed")]
-        [DataType(DataType.Upload)]
-        [Display(Name = "Upload Product Image")]
-        [FileExtensions(Extensions = "jpg")]
-        public IFormFile Image { get; set; }
-
-
-        // [Required]
-        // [StringLength(100)]
+        [Required(ErrorMessage = "Please add an image name.")]
+        [StringLength(100)]
         [Display(Name = "Image Name")]
         public string ImageName { get; set; }
+
+        [Required(ErrorMessage = "Please add upload an image.")]
+        [Display(Name = "Image")]
+        public string ImagePath { get; set; }
     }
 }

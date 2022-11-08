@@ -18,6 +18,7 @@ namespace GroupProject.Data
         }
 
         public DbSet<ItemsModel> ItemsModel { get; set; }
+        public DbSet<OrdersModel> OrdersModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

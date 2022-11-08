@@ -8,6 +8,7 @@ namespace GroupProject.Models
 {
     public class OrdersModel
     {
+        [Key]
         [Display(Name = "Order Number")]
         public int OrderID { get; set; }
 

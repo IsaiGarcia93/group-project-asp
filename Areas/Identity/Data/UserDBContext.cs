@@ -17,16 +17,18 @@ namespace GroupProject.Data
         {
         }
 
-        public DbSet<ItemsModel> ItemsModel { get; set; }
-        public DbSet<OrdersModel> OrdersModel { get; set; }
-
+        public DbSet<ItemsModel> Items { get; set; }
+        public DbSet<OrdersModel> Orders { get; set; }
         public DbSet<UsersModel> UserModel { get; set; }
+        public DbSet<OrderDetails> OrdersDetails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
 
             builder.Entity<UsersModel>().HasData(
                 new UsersModel
@@ -45,7 +47,9 @@ namespace GroupProject.Data
                 }
                 );
 
-
+            builder.Entity<OrderDetails>().HasKey(od => new { od.OrderID, od.ItemID });
+            builder.Entity<OrderDetails>().HasOne(od => od.Item).WithMany(o => o.OrderDetails).HasForeignKey(od => od.ItemID);
+            builder.Entity<OrderDetails>().HasOne(od => od.Order).WithMany(d => d.OrderDetails).HasForeignKey(bc => bc.OrderID);
         }
 
     }

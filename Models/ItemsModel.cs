@@ -39,5 +39,7 @@ namespace GroupProject.Models
         [Required(ErrorMessage = "Please add upload an image.")]
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
+
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

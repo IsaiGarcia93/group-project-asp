@@ -10,18 +10,18 @@ namespace GroupProject.Models
     {
         [Key]
         public int UserId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please add first name.")]
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ("Please add last name."))]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email")]
-        [Required]
+        [Required(ErrorMessage = "Please add an email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }

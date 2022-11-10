@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GroupProject.Data.UserDBContex;
 
 namespace GroupProject
 {
@@ -29,6 +30,9 @@ namespace GroupProject
             services.AddDbContext<Data.UserDBContext>(options =>
            options.UseSqlServer(
               Configuration.GetConnectionString("UserDBContextConnection")));
+
+            services.AddDbContext<cs>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("cs")));
 
         }
 

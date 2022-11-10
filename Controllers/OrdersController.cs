@@ -10,22 +10,22 @@ using GroupProject.Models;
 
 namespace GroupProject.Controllers
 {
-    public class ItemsController : Controller
+    public class OrdersController : Controller
     {
         private readonly cs _context;
 
-        public ItemsController(cs context)
+        public OrdersController(cs context)
         {
             _context = context;
         }
 
-        // GET: ItemsModels
+        // GET: OrdersModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ItemsModel.ToListAsync());
+            return View(await _context.OrdersModel.ToListAsync());
         }
 
-        // GET: ItemsModels/Details/5
+        // GET: OrdersModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace GroupProject.Controllers
                 return NotFound();
             }
 
-            var itemsModel = await _context.ItemsModel
-                .FirstOrDefaultAsync(m => m.ItemID == id);
-            if (itemsModel == null)
+            var ordersModel = await _context.OrdersModel
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (ordersModel == null)
             {
                 return NotFound();
             }
 
-            return View(itemsModel);
+            return View(ordersModel);
         }
 
-        // GET: ItemsModels/Create
+        // GET: OrdersModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ItemsModels/Create
+        // POST: OrdersModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,ItemDescription,ItemPrice,DateCreated,ImageName,ImagePath")] ItemsModel itemsModel)
+        public async Task<IActionResult> Create([Bind("OrderID,PurchaseDate,TotalAmount")] OrdersModel ordersModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(itemsModel);
+                _context.Add(ordersModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(itemsModel);
+            return View(ordersModel);
         }
 
-        // GET: ItemsModels/Edit/5
+        // GET: OrdersModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace GroupProject.Controllers
                 return NotFound();
             }
 
-            var itemsModel = await _context.ItemsModel.FindAsync(id);
-            if (itemsModel == null)
+            var ordersModel = await _context.OrdersModel.FindAsync(id);
+            if (ordersModel == null)
             {
                 return NotFound();
             }
-            return View(itemsModel);
+            return View(ordersModel);
         }
 
-        // POST: ItemsModels/Edit/5
+        // POST: OrdersModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,ItemDescription,ItemPrice,DateCreated,ImageName,ImagePath")] ItemsModel itemsModel)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderID,PurchaseDate,TotalAmount")] OrdersModel ordersModel)
         {
-            if (id != itemsModel.ItemID)
+            if (id != ordersModel.OrderID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace GroupProject.Controllers
             {
                 try
                 {
-                    _context.Update(itemsModel);
+                    _context.Update(ordersModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ItemsModelExists(itemsModel.ItemID))
+                    if (!OrdersModelExists(ordersModel.OrderID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace GroupProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(itemsModel);
+            return View(ordersModel);
         }
 
-        // GET: ItemsModels/Delete/5
+        // GET: OrdersModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace GroupProject.Controllers
                 return NotFound();
             }
 
-            var itemsModel = await _context.ItemsModel
-                .FirstOrDefaultAsync(m => m.ItemID == id);
-            if (itemsModel == null)
+            var ordersModel = await _context.OrdersModel
+                .FirstOrDefaultAsync(m => m.OrderID == id);
+            if (ordersModel == null)
             {
                 return NotFound();
             }
 
-            return View(itemsModel);
+            return View(ordersModel);
         }
 
-        // POST: ItemsModels/Delete/5
+        // POST: OrdersModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var itemsModel = await _context.ItemsModel.FindAsync(id);
-            _context.ItemsModel.Remove(itemsModel);
+            var ordersModel = await _context.OrdersModel.FindAsync(id);
+            _context.OrdersModel.Remove(ordersModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ItemsModelExists(int id)
+        private bool OrdersModelExists(int id)
         {
-            return _context.ItemsModel.Any(e => e.ItemID == id);
+            return _context.OrdersModel.Any(e => e.OrderID == id);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace GroupProject.Controllers
         // GET: Item
         public async Task<IActionResult> Index()
         {
-            var userDbContext = _context.ItemsModel.
+            //var userDbContext = _context.ItemsModel.
             return View();
         }
     }

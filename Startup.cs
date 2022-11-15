@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroupProject.Data.UserDBContex;
+using GroupProject.Areas.Identity.Data;
 
 namespace GroupProject
 {
@@ -33,12 +34,14 @@ namespace GroupProject
 
             services.AddDbContext<cs>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("cs")));
-
+            services.AddTransient<UserSeedData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserSeedData seed)
         {
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,6 +57,8 @@ namespace GroupProject
 
             app.UseRouting();
 
+            seed.SeedAdminUser();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -64,6 +69,8 @@ namespace GroupProject
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            
         }
     }
 }

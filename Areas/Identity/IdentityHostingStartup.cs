@@ -20,7 +20,7 @@ namespace GroupProject.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("UserDBContextConnection")));
 
-                services.AddDefaultIdentity<AppliocationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<UserDBContext>();
             });
         }

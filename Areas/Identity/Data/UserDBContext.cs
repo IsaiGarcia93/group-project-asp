@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GroupProject.Data
 {
-    public class UserDBContext : IdentityDbContext<AppliocationUser>
+    public class UserDBContext : IdentityDbContext<ApplicationUser>
     {
         public UserDBContext(DbContextOptions<UserDBContext> options)
             : base(options)
@@ -30,22 +30,7 @@ namespace GroupProject.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
 
-            builder.Entity<UsersModel>().HasData(
-                new UsersModel
-                {
-                    UserId = 1,
-                    FirstName = "Admin", //Can change to artist name
-                    LastName = "Artist",
-                    Email = "admin@admin.com",
-                    Password = "Admin1",
-                    Phone  = "4025555555",
-                    Address = "8800 O Street",
-                    City = "Lincoln",
-                    State = "NE",
-                    Zip = "68504"
-
-                }
-                );
+           
 
             builder.Entity<OrderDetails>().HasKey(od => new { od.OrderID, od.ItemID });
             builder.Entity<OrderDetails>().HasOne(od => od.Item).WithMany(o => o.OrderDetails).HasForeignKey(od => od.ItemID);
